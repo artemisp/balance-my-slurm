@@ -85,7 +85,7 @@ Then the trainer should employ this checkpoint by passing it to its `TrainingArg
 ```
  training_args = TrainingArguments(
         ...
-        output_dir='./checkpoints',
+        output_dir=args.output_dir,
         resume_from_checkpoint=args.resume_from_checkpoint,
     )
 
