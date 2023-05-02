@@ -60,7 +60,7 @@ You could also consider
 <a name="script-reqs-section"></a>
 ## Python Script Requirements
 
-The python script to run should contain an argument `--resume_from_checkpoint` that stores the path to the checkpoint. This can be achieved using the following code in the argument parser
+The python script to run should contain an argument `--resume_from_checkpoint` that stores the path to the checkpoint and `--output_dir` that will be the path to the folder that contains a subfolder `checkpoints` where all checkpoints will be stored. This can be achieved using the following code in the argument parser
 ```
 import argparse
 def parse_args():
@@ -70,6 +70,12 @@ def parse_args():
         type=str,
         const=None,
         default=None,
+        help="Resume training from a given checkpoint.",
+    )
+    parser.add_argument(
+        "--output_dir",
+        type=str,
+        default= os.path.join(os.getcwd(), "checkpoints"),
         help="Resume training from a given checkpoint.",
     )
     return parser.parse_args()

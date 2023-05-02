@@ -20,5 +20,5 @@ if [ -n "$LAST_CHECKPOINT" ]; then
     srun $PYTHON_BINARY $PWD/$@ --resume_from_checkpoint $CHECKPOINTS_DIR/$LAST_CHECKPOINT --output_dir $CHECKPOINTS_DIR
 else
     echo "Starting training from scratch"
-    srun $PYTHON_BINARY $PWD/$@ --output_dir $CHECKPOINTS_DIR --cache_dir $CACHE_DIR
+    srun $PYTHON_BINARY $PWD/$@ --output_dir $CHECKPOINTS_DIR
 fi
