@@ -1,0 +1,20 @@
+# .gitignore
+
+# Ignore __pycache__ directories
+__pycache__/
+
+# Ignore .pyc files
+*.pyc
+
+
+# Ignore cache
+**/cache/**
+
+# Ignore checkpoints
+**/checkpoints/**
+
+# Ignore slurm_logs
+**/test_slurm_logs/**
+
+# Ignore deployment logs
+continuous_deployment_logs.txt
