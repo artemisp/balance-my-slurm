@@ -19,7 +19,7 @@ def parse_args():
         "--output_dir",
         type=str,
         default= os.path.join(os.getcwd(), "checkpoints"),
-        help="Resume training from a given checkpoint.",
+        help="Checkpoint directory",
     )
     parser.add_argument(
         "--tiny",
