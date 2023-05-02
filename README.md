@@ -76,7 +76,7 @@ def parse_args():
         "--output_dir",
         type=str,
         default= os.path.join(os.getcwd(), "checkpoints"),
-        help="Resume training from a given checkpoint.",
+        help="Checkpoint directory",
     )
     return parser.parse_args()
 args = parse_args()
