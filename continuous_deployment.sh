@@ -12,6 +12,8 @@
 # Maximum number of continuous deployments
 MAX_ITERATIONS=$1
 SBATCH_OPTIONS=$2
+# get user
+USER = $(whoami)
 
 # Name of the Slurm job script with arguments
 SLURM_JOB_SCRIPT="train_with_last_checkpoint.sh"
