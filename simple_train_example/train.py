@@ -3,6 +3,7 @@ import os
 from datasets import load_dataset, load_from_disk
 from transformers import T5ForConditionalGeneration, T5TokenizerFast, Seq2SeqTrainingArguments, Seq2SeqTrainer
 
+os.environ["WANDB_RESUME"] = 'allow'
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -80,7 +81,9 @@ def main():
 
     training_args = Seq2SeqTrainingArguments(
         output_dir=args.output_dir,
-        num_train_epochs=3,
+        run_name='test-auto-ckpt',
+        overwrite_output_dir=False,
+        num_train_epochs=20,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
         evaluation_strategy="epoch",
@@ -91,8 +94,8 @@ def main():
         save_strategy="steps",
         save_steps=5,
         learning_rate=3e-4,
-        resume_from_checkpoint=args.resume_from_checkpoint,
-        report_to="none"
+        # resume_from_checkpoint=args.resume_from_checkpoint,
+        report_to="wandb"
     )
 
     trainer = Seq2SeqTrainer(
@@ -101,8 +104,9 @@ def main():
         train_dataset=dataset["train"],
         eval_dataset=dataset["validation"],
     )
-
-    trainer.train()
+    
+    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)
+        
     
 if __name__ == "__main__":
     main()
