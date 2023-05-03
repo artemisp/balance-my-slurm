@@ -1,19 +1,10 @@
 #!/bin/bash
 
-
-
-
-
-
-
-
-
-
 # Maximum number of continuous deployments
 MAX_ITERATIONS=$1
 SBATCH_OPTIONS=$2
 # get user
-USER = $(whoami)
+USER=$(whoami)
 
 # Name of the Slurm job script with arguments
 SLURM_JOB_SCRIPT="train_with_last_checkpoint.sh"
@@ -31,12 +22,12 @@ while [ $iteration -lt $MAX_ITERATIONS ]; do
 
     # Wait for the job to start
     while [ -z "$(squeue -u $USER --format=%i | grep $job_id)" ]; do
-        sleep 10
+        sleep 100
     done
 
     # Wait for the job to complete
     while [ -n "$(squeue -u $USER --format=%i | grep $job_id)" ]; do
-        sleep 10
+        sleep 100
     done
 
     echo "Job $job_id completed, checking if the next job can be started."
