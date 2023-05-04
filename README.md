@@ -103,6 +103,7 @@ Then the trainer should employ this checkpoint by passing it to its `TrainingArg
 
 * Cache your dataloaders: preprocessing can take time, and we do not want to waste this time on the clusters. A way to do that is using the `datasets.load_from_disk` and `Dataset.save_to_disk` [methods](https://huggingface.co/docs/datasets/loading) in transformers. The `simple_train_example/train.py` includes an example of how you can do that. 
 * To increase fairness, try to checkpoint often and set low times for sbatch jobs (~2-5hrs seems reasonable depending on model size). HOWEVER, try not to store too many checkpoints - `Trainer` handles deletion of old checkpoints if you set `save_total_limit` in `TrainingArgs`. Checkpoints fill up storage very fast. 
+* `transformers.Trainer` has an option to retrieve the latest checkpoint by simply passing `trainer.train(resume_from_checkpoint=True)`, however, this repository tried to relly as little as possible to the underlying implementation so it can be used with different training libraries. 
 
 <a name="modifications-section"></a>
 ## Modifications for Other Training Libraries
